@@ -15,4 +15,8 @@ const commentRoutes = require("./routes/comments");
 
 require("dotenv").config({path: ".config/.env"})
 
-connectDB
+connectDB()
+
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
+app.use(express.urlencoded({extended: true}))
