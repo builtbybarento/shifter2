@@ -1,12 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.DB_STRING, {
+    })
 
-main().catch(err => console.log(err));
-
-async function main() {
-  await mongoose.connect(process.env.DB_STRING);
-  console.log("Connected to MongoDB")
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
+    console.log(`MongoDB Connected: ${conn.connection.host}`)
+  } catch (err) {
+    console.error(err)
+    process.exit(1)
+  }
 }
 
-module.exports = main
+module.exports = connectDB
